@@ -6,6 +6,7 @@ import { tokenStorage } from "@/shared/lib/token";
 
 export default function GNB() {
   const router = useRouter();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -24,19 +25,42 @@ export default function GNB() {
   }
 
   const handleAuthClick = () => {
-    router.push(isLoggedIn ? "/user" : "/sign-in");
+    if (isLoggedIn) {
+      // 로그아웃
+      tokenStorage.clear();
+      setIsLoggedIn(false);
+      router.push("/sign-in");
+    } else {
+      router.push("/sign-in");
+    }
   };
 
   return (
     <header className="flex h-14 items-center justify-between border-b px-6">
-      <h1 className="text-sm font-bold text-yellow-500">KB Healthcare</h1>
-
-      <button
-        onClick={handleAuthClick}
-        className="rounded px-3 py-1 text-sm hover:bg-gray-100"
+      <h1
+        className="text-sm font-bold text-yellow-500 cursor-pointer"
+        onClick={() => router.push("/")}
       >
-        {isLoggedIn ? "회원정보" : "로그인"}
-      </button>
+        KB Healthcare
+      </h1>
+
+      <div className="flex gap-2">
+        {isLoggedIn && (
+          <button
+            onClick={() => router.push("/user")}
+            className="rounded px-3 py-1 text-sm hover:bg-gray-100 cursor-pointer"
+          >
+            회원정보
+          </button>
+        )}
+
+        <button
+          onClick={handleAuthClick}
+          className="rounded px-3 py-1 text-sm hover:bg-gray-100 cursor-pointer"
+        >
+          {isLoggedIn ? "로그아웃" : "로그인"}
+        </button>
+      </div>
     </header>
   );
 }
