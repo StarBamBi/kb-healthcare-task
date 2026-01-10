@@ -14,3 +14,24 @@ apiClient.interceptors.request.use((config) => {
 
   return config;
 });
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      tokenStorage.clear();
+
+      // 현재 경로 저장
+      const currentPath =
+        typeof window !== "undefined"
+          ? window.location.pathname + window.location.search
+          : "/";
+
+      window.location.href = `/sign-in?redirect=${encodeURIComponent(
+        currentPath
+      )}`;
+    }
+
+    return Promise.reject(error);
+  }
+);
