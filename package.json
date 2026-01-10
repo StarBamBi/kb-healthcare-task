@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.16",
+    "@tanstack/react-virtual": "^3.13.18",
     "axios": "^1.13.2",
     "msw": "^2.12.7",
     "next": "16.1.1",
