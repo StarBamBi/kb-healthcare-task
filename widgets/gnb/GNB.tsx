@@ -1,19 +1,30 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { tokenStorage } from "@/shared/lib/token";
 
 export default function GNB() {
   const router = useRouter();
-  const isLoggedIn = Boolean(tokenStorage.getAccessToken());
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    setIsLoggedIn(Boolean(tokenStorage.getAccessToken()));
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <header className="flex h-14 items-center justify-between border-b px-6">
+        <h1 className="text-sm font-semibold">KB Healthcare</h1>
+        <div className="h-6 w-16" />
+      </header>
+    );
+  }
 
   const handleAuthClick = () => {
-    if (isLoggedIn) {
-      router.push("/user");
-    } else {
-      router.push("/sign-in");
-    }
+    router.push(isLoggedIn ? "/user" : "/sign-in");
   };
 
   return (
