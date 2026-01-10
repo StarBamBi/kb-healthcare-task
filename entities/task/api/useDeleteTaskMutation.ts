@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { apiClient } from "@/shared/lib/apiClient";
+import { apiClient } from "@/shared/api/axios";
 
 export const useDeleteTaskMutation = () => {
   return useMutation({

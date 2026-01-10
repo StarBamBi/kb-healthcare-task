@@ -29,7 +29,7 @@ export default function GNB() {
 
   return (
     <header className="flex h-14 items-center justify-between border-b px-6">
-      <h1 className="text-sm font-semibold">KB Healthcare</h1>
+      <h1 className="text-sm font-bold text-yellow-500">KB Healthcare</h1>
 
       <button
         onClick={handleAuthClick}

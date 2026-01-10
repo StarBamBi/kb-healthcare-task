@@ -21,10 +21,10 @@ export default function LNB() {
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded px-3 py-2 text-sm ${
+              className={`rounded px-3 py-2 text-sm transition-colors ${
                 isActive
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-yellow-500 text-white"
+                  : "text-gray-700 hover:bg-blue-50"
               }`}
             >
               {item.label}
