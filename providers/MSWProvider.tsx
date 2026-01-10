@@ -1,19 +1,29 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function MSWProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
       import("@/mocks/browser").then(({ worker }) => {
-        worker.start();
+        worker.start().then(() => {
+          setReady(true);
+        });
       });
+    } else {
+      setReady(true);
     }
   }, []);
+
+  if (!ready) {
+    return null;
+  }
 
   return <>{children}</>;
 }
