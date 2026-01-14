@@ -41,7 +41,7 @@ export default function SignInForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
-        <label>이메일</label>
+        <label htmlFor="email">이메일</label>
         <input
           {...register("email", signInValidation.email)}
           className="w-full border p-2"
@@ -52,7 +52,7 @@ export default function SignInForm() {
       </div>
 
       <div>
-        <label>비밀번호</label>
+        <label htmlFor="password">비밀번호</label>
         <input
           type="password"
           {...register("password", signInValidation.password)}
