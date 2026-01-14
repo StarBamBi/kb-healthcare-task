@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { tokenStorage } from "@/shared/lib/token";
 import {
   LayoutDashboard,
@@ -13,6 +13,7 @@ import {
 
 export default function GNB() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -20,7 +21,7 @@ export default function GNB() {
   useEffect(() => {
     setIsMounted(true);
     setIsLoggedIn(Boolean(tokenStorage.getAccessToken()));
-  }, []);
+  }, [pathname]);
 
   if (!isMounted) {
     return (
