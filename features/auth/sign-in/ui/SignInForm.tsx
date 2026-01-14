@@ -41,10 +41,10 @@ export default function SignInForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <div>
-        <label htmlFor="email">이메일</label>
+        <label htmlFor="email">이메일(test@test.com)</label>
         <input
           {...register("email", signInValidation.email)}
-          className="w-full border p-2"
+          className="w-full border p-2 rounded"
         />
         {errors.email && (
           <p className="text-sm text-red-500">{errors.email.message}</p>
@@ -52,11 +52,11 @@ export default function SignInForm() {
       </div>
 
       <div>
-        <label htmlFor="password">비밀번호</label>
+        <label htmlFor="password">비밀번호(password123)</label>
         <input
           type="password"
           {...register("password", signInValidation.password)}
-          className="w-full border p-2"
+          className="w-full border p-2 rounded"
         />
         {errors.password && (
           <p className="text-sm text-red-500">{errors.password.message}</p>
@@ -67,7 +67,7 @@ export default function SignInForm() {
         type="submit"
         disabled={!isValid || isPending}
         className={`h-10 rounded text-white ${
-          isValid ? "bg-primary" : "bg-disabled"
+          isValid ? "bg-primary cursor-pointer" : "bg-disabled"
         }`}
       >
         로그인
