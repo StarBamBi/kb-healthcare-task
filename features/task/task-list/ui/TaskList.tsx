@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useVirtualizer } from "@tanstack/react-virtual";
-
 import Modal from "@/shared/ui/Modal";
 import { useTaskInfiniteQuery } from "@/entities/task/api/useTaskInfiniteQuery";
 
@@ -120,7 +119,7 @@ export default function TaskList() {
       >
         <p className="mb-4 text-sm">{errorMessage}</p>
         <button
-          className="w-full rounded bg-primary px-3 py-2 text-black"
+          className="w-full rounded bg-primary px-3 py-2 text-white cursor-pointer"
           onClick={() => router.push("/")}
         >
           목록으로 이동
