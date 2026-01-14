@@ -56,7 +56,7 @@ export default function TaskDetailPage() {
 
         <button
           onClick={() => setShowDeleteModal(true)}
-          className="rounded bg-red-500 px-4 py-2 text-white"
+          className="rounded bg-red-500 px-4 py-2 text-white cursor-pointer"
         >
           삭제
         </button>
@@ -84,7 +84,7 @@ export default function TaskDetailPage() {
           onClick={handleDelete}
           className={`w-full rounded px-3 py-2 text-white ${
             isConfirmMatched ? "bg-red-500" : "bg-gray-300"
-          }`}
+          } cursor-pointer`}
         >
           삭제
         </button>
