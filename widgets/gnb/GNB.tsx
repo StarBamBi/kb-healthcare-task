@@ -3,6 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { tokenStorage } from "@/shared/lib/token";
+import {
+  LayoutDashboard,
+  CheckSquare,
+  LogIn,
+  User,
+  LogOut,
+} from "lucide-react";
 
 export default function GNB() {
   const router = useRouter();
@@ -38,7 +45,7 @@ export default function GNB() {
   return (
     <header className="flex h-14 items-center justify-between border-b px-6">
       <h1
-        className="text-sm font-bold text-yellow-500 cursor-pointer"
+        className="text-sm font-bold text-primary cursor-pointer"
         onClick={() => router.push("/")}
       >
         KB Healthcare
@@ -50,15 +57,26 @@ export default function GNB() {
             onClick={() => router.push("/user")}
             className="rounded px-3 py-1 text-sm hover:bg-gray-100 cursor-pointer"
           >
+            <User size={16} className="inline-block mr-1" />
             회원정보
           </button>
         )}
 
         <button
           onClick={handleAuthClick}
-          className="rounded px-3 py-1 text-sm hover:bg-gray-100 cursor-pointer"
+          className="flex items-center gap-1 text-sm cursor-pointer hover:text-primary"
         >
-          {isLoggedIn ? "로그아웃" : "로그인"}
+          {isLoggedIn ? (
+            <>
+              <LogOut size={16} />
+              로그아웃
+            </>
+          ) : (
+            <>
+              <LogIn size={16} />
+              로그인
+            </>
+          )}
         </button>
       </div>
     </header>

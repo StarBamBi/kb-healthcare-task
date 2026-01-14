@@ -1,36 +1,36 @@
+// widgets/lnb/LNB.tsx
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-const NAV_ITEMS = [
-  { label: "대시보드", href: "/" },
-  { label: "할 일", href: "/task" },
-];
+import { useRouter, usePathname } from "next/navigation";
+import { LayoutDashboard, CheckSquare } from "lucide-react";
 
 export default function LNB() {
+  const router = useRouter();
   const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
 
   return (
     <aside className="w-48 border-r p-4">
       <nav className="flex flex-col gap-2">
-        {NAV_ITEMS.map((item) => {
-          const isActive = pathname === item.href;
+        <button
+          onClick={() => router.push("/")}
+          className={`flex items-center gap-2 rounded px-3 py-2 text-sm cursor-pointer ${
+            isActive("/") ? "bg-primary text-white" : "hover:bg-gray-100"
+          }`}
+        >
+          <LayoutDashboard size={16} />
+          대시보드
+        </button>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`rounded px-3 py-2 text-sm transition-colors ${
-                isActive
-                  ? "bg-yellow-500 text-white"
-                  : "text-gray-700 hover:bg-blue-50"
-              }`}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+        <button
+          onClick={() => router.push("/task")}
+          className={`flex items-center gap-2 rounded px-3 py-2 text-sm cursor-pointer ${
+            isActive("/task") ? "bg-primary text-white" : "hover:bg-gray-100"
+          }`}
+        >
+          <CheckSquare size={16} />할 일
+        </button>
       </nav>
     </aside>
   );
